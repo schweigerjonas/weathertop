@@ -1,0 +1,127 @@
+extends layout.pug
+
+block content
+    h1.left-offset Dashboard
+    ul.list-group
+        each station in station_data
+            li.list-group-item
+                div.dashboard-card-div
+                    div.dashboard-panel
+                        div
+                        h4
+                            span.station_name #{station.station_name}
+                        p.panel-text Lat:  #{null}
+                            span.station_latitude #{station.latitude}
+                        p.panel-text Lon:  #{null}
+                            span.station_longitude #{station.longitude}
+                        p
+                            span.d-none.station_id #{station.station_id}
+                    div.dashboard-panel.icon-panel
+                        div.dashboard-panel-content
+                            h4 Wetter
+                            if station.weather !== null
+                                p #{station.weather}
+                            else
+                                p --
+                        div.dashboard-panel-content
+                            div.dashboard-icon.weather-icon
+                                if station.weather !== null
+                                    img.icon.weather-icon(src=`/img/${station.weatherIcon}` alt="Weather Icon")
+
+                    div.dashboard-panel.icon-panel
+                        div.dashboard-panel-content
+                            h4 Temperatur
+                            if station.temperature !== null
+                                p #{station.temperature} Grad
+                                p Max: #{station.maxTemperature}
+                                p Min: #{station.minTemperature}
+                            else
+                                p --
+                        div.dashboard-panel-content
+                            div.dashboard-icon.temperature-icon
+                                svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-thermometer-half" viewBox="0 0 16 16")
+                                    path(d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415z")
+                                    path(d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z")
+                            div.dashboard-icon.temperature-icon
+                                if station.temperatureTrend != null
+                                    img.icon(src=`/img/${station.temperatureTrend}` alt="Temperature Trend")
+                    div.dashboard-panel.icon-panel
+                        div.dashboard-panel-content
+                            h4 Wind
+                            if station.wind_speed !== null
+                                p #{station.wind_speed} bft
+                                p #{station.wind_direction}
+                                p Max: #{station.maxWindSpeed}
+                                p Min: #{station.minWindSpeed}
+                            else
+                                p --
+                        div.dashboard-panel-content
+                            div.dashboard-icon.wind-speed-icon
+                                svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16")
+                                    path(d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5zm-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2zM0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5z")
+                            div.dashboard-icon.wind-speed-icon
+                                if station.windSpeedTrend != null
+                                    img.icon(src=`/img/${station.windSpeedTrend}` alt="Windspeed Trend")
+                    div.dashboard-panel.right-dashboard-panel.icon-panel
+                        div.dashboard-panel-content
+                            h4 Luftdruck
+                            if station.air_pressure !== null
+                                p #{station.air_pressure} hPa
+                                p Max: #{station.maxAirPressure}
+                                p Min: #{station.minAirPressure}
+                            else
+                                p --
+                        div.dashboard-panel-content
+                            div.dashboard-icon.air-pressure-icon
+                                svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-speedometer" viewBox="0 0 16 16")
+                                    path(d="M8 2a.5.5 0 0 1 .5.5V4a.5.5 0 0 1-1 0V2.5A.5.5 0 0 1 8 2zM3.732 3.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 8a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 8zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 7.31A.91.91 0 1 0 8.85 8.569l3.434-4.297a.389.389 0 0 0-.029-.518z")
+                                    path(fill-rule="evenodd" d="M6.664 15.889A8 8 0 1 1 9.336.11a8 8 0 0 1-2.672 15.78zm-4.665-4.283A11.945 11.945 0 0 1 8 10c2.186 0 4.236.585 6.001 1.606a7 7 0 1 0-12.002 0z")
+                            div.dashboard-icon.air-pressure-icon
+                                if station.airPressureTrend != null
+                                    img.icon(src=`/img/${station.airPressureTrend}` alt="Air-Pressure Trend")
+                div.left-offset.dashboard-links
+                    a(href="/stations/" + station.station_id)
+                        svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder" viewBox="0 0 16 16")
+                            path(d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z")
+
+                    form.delete-station(action="/dashboard" method="post")
+                        input(type="hidden" name="deleteStationID" value=station.station_id)
+                        button.btn.delete-station-button
+                            svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16")
+                                path(d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z")
+                                path(d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z")
+
+    form.add-data-panel(action="/dashboard" method="post")
+        div.input-panel
+            div.add-station-input.form-group
+                label.form-label(for="stationNameInput") Name Wetterstation
+                input.form-control(type="text" maxlength="30"  id="stationNameInput" name="stationNameInput" placeholder="Name" required)
+            div.add-station-input.form-group
+                label.form-label(for="stationLatitudeInput") Breitengrad
+                input.form-control(type="number" step="0.00001" min="-90.0" max="90.0" id="stationLatitudeInput" name="stationLatitudeInput" placeholder="Breitengrad" required)
+            div.add-station-input.form-group
+                label.form-label(for="stationLongitudeInput") Längengrad
+                input.form-control(type="number" step="0.00001" min="-90.0" max="90.0" id="stationLongitudeInput" name="stationLongitudeInput" placeholder="Höhengrad" required)
+        div.button-panel.mb-3
+            div.submit-button.button.form-group
+                button.btn.btn-primary(type="submit") Station hinzufügen
+
+    div.dashboard-map
+        div(id="map")
+        script.
+            const map = L.map("map").setView([49.0134, 12.1016], 13);
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            let stationArr = document.getElementsByClassName("station_name");
+            let stationIdArr = document.getElementsByClassName("station_id")
+            let stationLatitudeArr = document.getElementsByClassName("station_latitude");
+            let stationLongitudeArr = document.getElementsByClassName("station_longitude");
+            let marker = [];
+
+            for(let i=0; i<stationArr.length; i++) {
+                marker[i] = L.marker([stationLatitudeArr[i].textContent, stationLongitudeArr[i].textContent]).addTo(map);
+                marker[i].bindPopup("<a href=\"/stations/"+stationIdArr[i].textContent + "\">" + stationArr[i].textContent + "</a>");
+            }

@@ -1,0 +1,19 @@
+extends layout.pug
+
+block content
+    div.login.left-offset.right-offset
+        div.login-panel
+            img(src="img/weatherIcons.jpg" alt="weatherIcons")
+        div.login-panel
+            form(action="/login" method="post")
+                div.form-group
+                    label.form-label(for="userEmailInput") Email
+                    input.form-control(type="email" id="userEmailInput" name="userEmailInput" placeholder="Email")
+                div.form-group
+                    label.form-label(for="userPasswordInput") Passwort
+                    input.form-control(type="password" id="userPasswordInput" name="userPasswordInput" placeholder="Passwort")
+                div.form-group.submit-button
+                    button.btn.btn-primary(type="submit") Einloggen
+
+            if login_error
+                div.alert.alert-danger.alert-margin(role="alert") #{login_error}

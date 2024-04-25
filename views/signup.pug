@@ -1,0 +1,21 @@
+extends layout.pug
+
+block content
+    form.left-offset(action="/signup" method="post")
+        div.form-group
+            label.form-label(for="userEmailInput") Email
+            input.form-control(type="email" id="userEmailInput" name="userEmailInput" placeholder="Email")
+        div.form-group
+            label.form-label(for="userForenameInput") Vorname
+            input.form-control(type="text" maxlength="20" id="userForenameInput" name="userForenameInput" placeholder="Vorname")
+        div.form-group
+            label.form-label(for="userSurnameInput") Nachname
+            input.form-control(type="text" maxlength="20" id="userSurnameInput" name="userSurnameInput" placeholder="Nachname")
+        div.form-group
+            label.form-label(for="userPasswordInput") Passwort
+            input.form-control(type="password" minlength="8" id="userPasswordInput" name="userPasswordInput" placeholder="Passwort")
+        div.form-group.submit-button
+            button.btn.btn-primary(type="submit") Registrieren
+
+        if signup_error
+            div.alert.alert-danger.alert-margin(role="alert") #{signup_error}
