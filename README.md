@@ -14,7 +14,7 @@ Save weather stations from all over the world and take accurate weather readings
 
 ## Overview
 
-![Weathertop Homepage](readme-img/weathertop-homepage.jpg)  
+![Weathertop Homepage](readme_img/weathertop-homepage.jpg)  
 The homepage users will see when first visiting the website. It allows users to login to their accounts or go to a signup page to create a new account.
 
 ![Weathertop Registration Page](readme_img/weathertop-registration-page.jpg)  
